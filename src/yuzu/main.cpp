@@ -2436,6 +2436,11 @@ void GMainWindow::SetDiscordEnabled([[maybe_unused]] bool state) {
 #endif
 
 int main(int argc, char* argv[]) {
+#ifdef _WIN32
+    AllocConsole();
+    freopen("CONOUT$", "w", stdout);
+#endif
+
     Common::DetachedTasks detached_tasks;
     MicroProfileOnThreadCreate("Frontend");
     SCOPE_EXIT({ MicroProfileShutdown(); });
