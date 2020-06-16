@@ -4,6 +4,7 @@
 
 #include <cmath>
 #include <mutex>
+#include <iostream>
 #include "core/frontend/emu_window.h"
 #include "core/frontend/input.h"
 #include "core/settings.h"
@@ -83,6 +84,8 @@ void EmuWindow::TouchPressed(unsigned framebuffer_x, unsigned framebuffer_y) {
     if (!IsWithinTouchscreen(framebuffer_layout, framebuffer_x, framebuffer_y))
         return;
 
+    std::cout << "TouchPressed(" << framebuffer_x << ", " << framebuffer_y << ")" << std::endl;
+
     std::lock_guard guard{touch_state->mutex};
     touch_state->touch_x = static_cast<float>(framebuffer_x - framebuffer_layout.screen.left) /
                            (framebuffer_layout.screen.right - framebuffer_layout.screen.left);
@@ -93,6 +96,8 @@ void EmuWindow::TouchPressed(unsigned framebuffer_x, unsigned framebuffer_y) {
 }
 
 void EmuWindow::TouchReleased() {
+    std::cout << "TouchReleased()" << std::endl;
+
     std::lock_guard guard{touch_state->mutex};
     touch_state->touch_pressed = false;
     touch_state->touch_x = 0;

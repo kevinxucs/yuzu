@@ -3,6 +3,7 @@
 // Refer to the license.txt file included.
 
 #include <glad/glad.h>
+#include <iostream>
 
 #include <QApplication>
 #include <QHBoxLayout>
@@ -360,6 +361,9 @@ qreal GRenderWindow::windowPixelRatio() const {
 
 std::pair<u32, u32> GRenderWindow::ScaleTouch(const QPointF& pos) const {
     const qreal pixel_ratio = windowPixelRatio();
+
+    std::cout << "ScaleTouch(pixel_ratio=" << pixel_ratio << ")" << std::endl;
+
     return {static_cast<u32>(std::max(std::round(pos.x() * pixel_ratio), qreal{0.0})),
             static_cast<u32>(std::max(std::round(pos.y() * pixel_ratio), qreal{0.0}))};
 }

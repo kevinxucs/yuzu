@@ -3,6 +3,7 @@
 // Refer to the license.txt file included.
 
 #include <cmath>
+#include <iostream>
 
 #include "common/assert.h"
 #include "core/frontend/framebuffer_layout.h"
@@ -27,6 +28,8 @@ FramebufferLayout DefaultFrameLayout(u32 width, u32 height) {
     // so just calculate them both even if the other isn't showing.
     FramebufferLayout res{width, height, false, {}};
 
+    std::cout << "layout: " << width << "x" << height << std::endl;
+
     const float window_aspect_ratio = static_cast<float>(height) / width;
     const float emulation_aspect_ratio = EmulationAspectRatio(
         static_cast<AspectRatio>(Settings::values.aspect_ratio), window_aspect_ratio);
@@ -41,6 +44,9 @@ FramebufferLayout DefaultFrameLayout(u32 width, u32 height) {
     }
 
     res.screen = screen;
+
+    std::cout << "screen: " << screen.GetWidth() << "x" << screen.GetHeight() << std::endl;
+
     return res;
 }
 
