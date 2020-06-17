@@ -356,7 +356,7 @@ QByteArray GRenderWindow::saveGeometry() {
 }
 
 qreal GRenderWindow::windowPixelRatio() const {
-    return devicePixelRatio();
+    return devicePixelRatioF();
 //    return 1.75;
 }
 
